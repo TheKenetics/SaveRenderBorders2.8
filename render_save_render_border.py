@@ -14,6 +14,11 @@ import bpy
 from bpy.props import EnumProperty, IntProperty, FloatVectorProperty, BoolProperty, FloatProperty, StringProperty, CollectionProperty
 from bpy.types import PropertyGroup, UIList
 
+"""
+Thanks to Diego Gangl for the tutorial on getting UILists working:
+https://sinestesia.co/blog/tutorials/using-uilists-in-blender/
+"""
+
 
 class SRB_saved_render_border(PropertyGroup):
 	"""Property Group to store render border information"""
@@ -91,7 +96,7 @@ class SRB_OT_set_render_border(bpy.types.Operator):
 	
 	@classmethod
 	def poll(cls, context):
-		return True
+		return context.scene.saved_render_borders
 
 	def execute(self, context):
 		saved_render_border = context.scene.saved_render_borders[self.index]
